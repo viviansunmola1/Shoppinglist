@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="style.css" rel="stylesheet"/>
+        <script src="https://kit.fontawesome.com/7b0701785d.js" crossorigin="anonymous"></script>
+        <title>GShop</title>
+    </head>
+    <body>
+        <div class="login">
+            <h1>Welcome to</h1>
+            <h1>G-Shop</h1>
+            <button onclick="login()">Login with Google</button>
+        </div>
+        <div class="loggedIn">
+            <nav>
+                <img class="profileIcon"/>
+                <p class="displayName"></p>
+                <button class="logOut" onclick="logOut()">Logout</button>
+            </nav>
+            <section>
+                <header>
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>Cart (<span class="cartItemsCount"></span>)</h2>
+                    <button class="cartListClearBtn hide">Clear all</button>
+                </header>
+                <div class="items cart-items"></div>
+            </section>
+            <section>
+                <header>
+                    <h2>Discover items (<span class="groceryItemsCount"></span>)</h2>
+                </header>
+                <div class="items grocery-items"></div>
+            </section>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+        <script src="helper.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>

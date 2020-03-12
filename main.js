@@ -12,6 +12,8 @@ const cartListE = document.getElementsByClassName("cart-items")[0];
 const cartListClearBtnE = document.getElementsByClassName("cartListClearBtn")[0];
 const cartCountE = document.getElementsByClassName("cartItemsCount")[0];
 
+const cartTotal = document.getElementsByClassName("cartItemsTotal")[0];
+
 const firebaseConfig = {
     apiKey: "AIzaSyD0MgA1IuiARHcyPg-GkhBpc4gNBPxpMsM",
     authDomain: "g-shop-f7070.firebaseapp.com",
@@ -82,6 +84,8 @@ async function renderCartItems(googleUser) {
     cartCountE.textContent = cartCount;
     cartListE.innerHTML = "";
 
+
+
     if (cartCount === 0) {
         cartListClearBtnE.classList.add("hide");
         return cartCountE.innerText = "Your cart is Empty";
@@ -99,14 +103,21 @@ async function renderCartItems(googleUser) {
         renderGroceryItems(googleUser);
     });
 
+    var total = 0 
+
     for (const key in cart) {
         const item = cart[key];
+        total = item.price + total
 
         const itemE =  genItemE({
             src: item.image,
             name: key,
             price: item.price
+
         }, {
+
+
+
             text: "Remove",
             callback() {
                 // removes from cart and adds to groceries list.
@@ -118,12 +129,19 @@ async function renderCartItems(googleUser) {
                 // re-render to see visual changes
                 renderCartItems(googleUser);
                 renderGroceryItems(googleUser);
+
             }
+
         });
 
         cartListE.appendChild(itemE);
+
     }
+    cartTotal.textContent = total;
+
 }
+
+
 
 async function renderGroceryItems(googleUser) {
     const db = firebase.firestore();
